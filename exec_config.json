@@ -1,0 +1,93 @@
+{
+    "category": "PLATFORM_LEVEL",
+    "name": "amsr_vector_fs_em_executionmanager_demo_application",
+    "isAdaptiveApplication": 0,
+    "processes": [
+      {
+        "name": "em-demo-process-AAClient",
+        "shortNamePath": "../tools/AAClient",
+        "startupConfigs": [
+          {
+            "resourceGroup" : "aa_app1_partition",
+            "schedulingPolicy" : "SCHED_RR",
+            "schedulingPriority" : 2,
+            "nice_value" : 5,
+            "options": [
+              "../cfgs/beans.xml"
+            ],
+            "workingDir":"",
+            "executionDependency": {
+              "em-demo-process-AAServer": 0
+            },
+            "functionGroups": [
+              {
+                "name": "MachineState",
+                "states": [
+                  "Startup",
+                  "Running",
+                  "SafeState"
+                ]
+              }
+            ],
+            "userId": 1001,
+            "primaryGroupId": 2002,
+            "secondaryGroupIds": [
+              3003, 3004, 3005
+            ],
+            "cores": {
+              "shallRunOn" : [
+                0,
+                2
+              ]
+            },
+            "enterTimeoutNanoSeconds" : 20000000000000000,
+            "exitTimeoutNanoSeconds" : 30000000000000000
+          }
+        ]
+      },
+      {
+        "name": "em-demo-process-AAServer",
+        "shortNamePath": "../tools/AAServer",
+        "startupConfigs": [
+          {
+            "resourceGroup" : "aa_app1_partition",
+            "schedulingPolicy" :"SCHED_RR",
+            "schedulingPriority" : 2,
+            "nice_value" : 5,
+            "options": [
+              "Option1",
+              "Option2",
+              "msc"
+            ],
+            "executionDependency": {
+              
+            },
+            "functionGroups": [
+              {
+                "name": "MachineState",
+                "states": [
+                  "Startup",
+                  "Running",
+                  "SafeState"
+                ]
+              }
+            ],
+            "userId": 1001,
+            "primaryGroupId": 2002,
+            "secondaryGroupIds": [
+              3003, 3004, 3005
+            ],
+            "cores": {
+              "shallRunOn" : [
+                0,
+                2
+              ]
+            },
+            "enterTimeoutNanoSeconds" : 20000000000000000,
+            "exitTimeoutNanoSeconds" : 30000000000000000
+          }
+        ]
+      }
+    ]
+  }
+ 
